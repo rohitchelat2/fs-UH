@@ -1,5 +1,5 @@
 ```mermaid
 graph TD;
-browser-->>server;
+browser->>server;
 server->>browser;
 ```
