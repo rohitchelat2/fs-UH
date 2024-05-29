@@ -1,6 +1,5 @@
-sequenceDiagram
-    participant browser
-    participant server
+'''mermaid
+graphTD;
 
     browser->>server: PUSH new note to https://studies.cs.helsinki.fi/exampleapp/new_note
     server-->>browser: URL redirect, reload the page
