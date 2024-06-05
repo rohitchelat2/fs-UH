@@ -3,7 +3,7 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser->>server: PUSH new note to https://studies.cs.helsinki.fi/exampleapp/new_note
+    browser->>server: PUSH https://studies.cs.helsinki.fi/exampleapp/new_note
     server-->>browser: URL redirect, reload the page
     
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
