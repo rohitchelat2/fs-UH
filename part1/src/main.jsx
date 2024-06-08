@@ -1,5 +1,5 @@
-import { render } from 'preact'
-import { App } from './app.jsx'
-import './index.css'
+import ReactDOM from 'react-dom/client'
 
-render(<App />, document.getElementById('app'))
+import App from './App'
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />)
