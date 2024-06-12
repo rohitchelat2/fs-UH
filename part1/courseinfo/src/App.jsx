@@ -27,7 +27,7 @@ const Head = (props) => {
 
 const Content = (props) => {
 
-  return (
+  return ( 
     <div>
       {props.parts.map(value => <Parts name={value.name} exercises={value.exercises} />)}
     </div>
