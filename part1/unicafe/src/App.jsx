@@ -1,32 +1,68 @@
 import { useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
+
+
+  
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Head text="Give Feedback" />
+      <Button handleClick={()=>setGood(good+1) } text="Good" />
+      <Button handleClick={()=>setNeutral(neutral+1) } text="Neutral" />
+      <Button handleClick={()=>setBad(bad+1) } text="Bad" />
+      <Head text="Statistics" />
+      <Statistics good={good} bad={bad} neutral={neutral}/>
+
+    </div>
   )
 }
+
+const Head = (props) => {
+  return (
+    <div>
+      <h1> {props.text} </h1>
+      
+    </div>
+  )
+}
+
+const Button = (props) => (
+  <button onClick={props.handleClick}>
+    {props.text}
+  </button>
+)
+
+
+const Statistics = (props) => {
+
+  var totalclicks = props.good+props.bad+props.neutral
+
+  if (totalclicks === 0) {
+    return (
+      <div>
+        Waiting for the first response
+      </div>
+    )
+  }
+  var pergood=(props.good/totalclicks)*100
+  var averagerating = (props.good-props.bad)/totalclicks
+  return(
+    <table><tbody>
+    <StatisticLine text="Total clicks :" value={totalclicks} />
+    <StatisticLine text="Good :" value={props.good} /> 
+    <StatisticLine text="Percentage of postive response :" value={pergood}/>
+    <StatisticLine text="Neutral :" value={props.neutral}/>
+    <StatisticLine text="Bad :" value={props.bad} />
+    <StatisticLine text="Average rating :" value={averagerating} />
+    </tbody></table>
+  )
+  }
+
+  const StatisticLine = (props) => (<tr><td>{props.text}</td><td>{props.value}</td></tr>)
 
 export default App
