@@ -1,5 +1,7 @@
 
 import { useState } from 'react'
+import ListPeople from './ListPeople'
+
 const Filter = (props) =>{
 
 var newfilterPersons= {}
@@ -38,7 +40,7 @@ return(
  <div>
     <h2>Numbers</h2>
     <div>Filter: <input  value={newFilter} onChange={handleFilter} /></div>
-    <ul> {newfilterPersons.map( person => (<li key={person.name} > {person.name} : {person.number}</li>))}</ul>
+    <ul> {newfilterPersons.map( person => (<ListPeople key={person.name} name={person.name} number={person.number}/>))}</ul>
 </div> 
 
 )}

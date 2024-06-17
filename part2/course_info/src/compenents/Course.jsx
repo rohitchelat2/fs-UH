@@ -7,6 +7,8 @@ const Part = (props) => {
   return(
   <p key={part.id}> {part.name} {part.exercises} </p>)}
 
+
+  
 const Content = (props) => { 
   const parts = props.parts
  

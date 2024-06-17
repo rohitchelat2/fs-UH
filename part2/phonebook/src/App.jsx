@@ -12,7 +12,6 @@ const App = () => {
   ]) 
 
   const checkName = (newName, newNum) => {
-    console.log(newName, newNum)
     const names= persons.map(person=>person.name)
     names.includes(newName)?alert(newName+ ' already exist in the phonebook') : newName ? addName(newName, newNum) : alert('Name cannot be blank') }
     const addName = (newName, newNum) => {
