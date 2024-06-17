@@ -15,12 +15,17 @@ const AddPeople = (props) => {
       }
     
 
-
+      const checkName = (event) => {
+        event.preventDefault()
+        
+        props.checkName(newName, newNum)
+        setNewName('') 
+        setNewNum('')  }
 
 
     return(
 
-        <form onSubmit={props.checkName}>
+        <form onSubmit={checkName}>
         <div>Name: <input value={newName} onChange={handleNameChange}/></div>
           <div>Number: <input  value={newNum} onChange={handleNumChange} /></div>
         
