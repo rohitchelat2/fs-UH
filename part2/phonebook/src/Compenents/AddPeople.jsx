@@ -24,15 +24,16 @@ const AddPeople = (props) => {
 
 
     return(
-
+        <div className='createContact'>
+          <h2>Create Contact</h2>
         <form onSubmit={checkName}>
-        <div>Name: <input value={newName} onChange={handleNameChange}/></div>
-          <div>Number: <input  value={newNum} onChange={handleNumChange} /></div>
+        <div>Name:<br></br> <input value={newName} onChange={handleNameChange}/></div>
+          <div>Number: <br></br><input  value={newNum} onChange={handleNumChange} /></div>
         
         <div>
-          <button type="submit">Add</button>
+         <br></br> <button type="submit">Add</button>
         </div>
-      </form>
+      </form></div>
     )
 }
 
