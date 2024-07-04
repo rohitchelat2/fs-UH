@@ -14,7 +14,7 @@ const getAll = (i) => {
     }
 
 const getWeather = (city) =>{
-            //$env:VITE_SOME_KEY="13324c256219db2f668282310e2745a3"
+            
             const api_key = import.meta.env.VITE_SOME_KEY
             const weatherRequest = axios.get(openweathermap+city+"&appid="+api_key)
             
