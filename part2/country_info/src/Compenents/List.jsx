@@ -13,7 +13,7 @@ else if(props.names.length===0)
 else{
 return(
 <div className="search_list">
-    <ul>{props.names.map(name=><li key={name} > {name} </li>)}
+    <ul>{props.names.map(name=><li key={name} > {name} <button onClick={props.showCoutnry} id={name}>Show</button></li>)}
     </ul></div>
 )}}
 export default List
