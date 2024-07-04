@@ -9,7 +9,7 @@ const Preview = (props) =>{
     else
         {
             const weathericon = "https://openweathermap.org/img/wn/"+ props.weather[2]+"@2x.png"
-            console.log(props.weather)
+            
   return(
    
    <div><h2>{props.country.name.common}</h2>

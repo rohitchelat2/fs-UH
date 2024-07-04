@@ -31,6 +31,8 @@ function App() {
     setCountriesFD(countryFull)
       
   }, [])
+
+  
   
 
 
@@ -44,8 +46,8 @@ function App() {
     setfilteredList(filteredCountryList)
     setCountry("")
     setweather("")
- 
     
+ 
   }
 
 
@@ -58,16 +60,17 @@ function App() {
     })}
 
   //If only one country in list activating base info
-  if(filteredList.length===1)
+  if(filteredList.length===1&&weather==="")
     {
-     
-     previewCountry(filteredList[0])
+      
+      previewCountry(filteredList[0])
      
     }
 
     const showCoutnry = (event) => {
       previewCountry(event.target.id)
     }
+
 
 
 
