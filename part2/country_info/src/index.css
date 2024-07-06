@@ -176,3 +176,18 @@ li:focus {
   gap: 1%;
   
 }
+
+.error {
+  color: rgb(0, 0, 0);
+  background: rgb(156, 12, 12);
+  font-size: 1em;
+  padding: 1%;
+  border-radius: 8px;
+  width: 30%;
+  height: 3%;
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+  margin: 1%;
+  text-align: center;
+}

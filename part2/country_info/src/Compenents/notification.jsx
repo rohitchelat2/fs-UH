@@ -5,13 +5,8 @@ const Notification = (props) => {
       return null
     }
     
+  
     else if(props.code === 1){
-    return (
-      <div className='notification'>
-        {props.message}
-      </div>
-    )}
-    else if(props.code === 0){
         return (
           <div className='error'>
             {props.message}
