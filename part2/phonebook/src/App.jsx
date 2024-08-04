@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Filter from './Compenents/Filter'
 import AddPeople from './Compenents/AddPeople'
 import ListPeople from './Compenents/ListPeople'
-import contact from './Compenents/persons'
+import contact from './persons'
 import Notification from './Compenents/notification'
 
 const App = () => {
