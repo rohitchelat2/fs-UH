@@ -25,7 +25,4 @@ const update = (changedPerson) => {
 
 }
 
-
-
-
   export default { getAll, createNew, deleteOne, update}

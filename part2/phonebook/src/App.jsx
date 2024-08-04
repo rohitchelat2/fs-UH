@@ -71,11 +71,12 @@ const App = () => {
     const deleteObject = persons.find(person => person.id === id)
     if (window.confirm(`Do you want to delete ${deleteObject.name} ?`))
     {
-    contact.deleteOne(id).then(deletedContact  => {
-    const newfilterPersons = persons.filter(person => person.id !== deletedContact.id)
+    contact.deleteOne(id).then(response  => {
+    const newfilterPersons = persons.filter(person => person.id !== id)
+    const deletedContact = persons.filter(person => person.id == id)
     setfilterPerson(newfilterPersons)
     setPersons(newfilterPersons)
-    setNotification([`${deletedContact.name} deleted from contact list`, 1])
+    setNotification([`${deletedContact[0].name} deleted from contact list`, 1])
     setTimeout(() => {setNotification([null,null])}, 5000)
     setfilterStr("")})
     .catch(error => {
@@ -92,7 +93,7 @@ const App = () => {
    }
 
 
-
+   
   return (
     
       <div><Notification message={notification[0]} code={notification[1]} />
@@ -103,7 +104,6 @@ const App = () => {
       <div className='contactList'><h2>Numbers</h2>
       <Filter value={filterStr} handleFilter={handleFilter}/>
       <ul> {filterPerson.map( person => (<ListPeople key={person.name} name={person.name} number={person.number} id={person.id} deleteOne={deleteOne}/>))}</ul>
-
 
     </div></div></div>
   )
