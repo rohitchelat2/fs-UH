@@ -38,9 +38,9 @@ const unknownEndpoint = (request, response) => {
 
 //Checking the connection with DB
 app.get('/info', (request, response) => {
-  const timestamp = new Date();
+  const timestamp = new Date()
   Person.find({}).then(persons => response.send('Phone has info for '+persons.length+' people<br></br>'+timestamp))
-  
+
 })
 
 
@@ -62,7 +62,7 @@ app.get('/api/persons/:id', (request, response, next) => {
       response.status(404).end()
     }
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 
@@ -73,23 +73,23 @@ app.get('/api/persons/:id', (request, response, next) => {
 //For adding new contact
 app.post('/api/persons', (request, response, next) => {
   /*
-  
+
   const newPerson = request.body
   newPerson.id = String(newId + 1)
   const names= persons.map(person=>person.name)
   const numbers= persons.map(person=>person.number)
-  
+
   const emptyField = () => {
 
-    return response.status(400).json({ 
-      error: 'Name or number cannot empty' 
+    return response.status(400).json({
+      error: 'Name or number cannot empty'
     })
 
   }
 
   const alreadyExist = () => {
-    return response.status(400).json({ 
-      error: 'Name or Number already exist' 
+    return response.status(400).json({
+      error: 'Name or Number already exist'
     })
 
   }
@@ -99,23 +99,23 @@ app.post('/api/persons', (request, response, next) => {
   response.json(newPerson)}
   !newPerson.name || !newPerson.number?emptyField() : names.includes(newPerson.name)?alreadyExist () : numbers.includes(newPerson.number)? alreadyExist (): addNew (newPerson.name, newPerson.number)
 }*/
-    const body = request.body
-    const person = new Person({
-    name: body.name, number: body.number})
-    person.save().then(savedPerson => {
+  const body = request.body
+  const person = new Person({
+    name: body.name, number: body.number })
+  person.save().then(savedPerson => {
     response.json(savedPerson)
   }).catch(error => next(error))
 })
 
 
 //for deleting contact
-app.delete('/api/persons/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-  .then(result => {
-    response.status(204).end()
-  })
-  .catch(error => next(error))
-  
+    .then(() => {
+      response.status(204).end()
+    })
+    .catch(error => next(error))
+
 })
 
 
@@ -127,7 +127,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     number: request.body.number,
   }
   Person.findByIdAndUpdate(request.params.id, person , { new: true, runValidators: true, context: 'query' } )
-  .then(updatedPerson => {response.json(updatedPerson)}).catch(error => next(error))
+    .then(updatedPerson => {response.json(updatedPerson)}).catch(error => next(error))
 })
 
 // this has to be the last loaded middleware, also all the routes should be registered before this!

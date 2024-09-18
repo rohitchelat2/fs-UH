@@ -3,21 +3,21 @@ require('dotenv').config()
 
 // DO NOT SAVE YOUR PASSWORD TO GITHUB!!
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI
 console.log('connecting to', url)
 
 mongoose.set('strictQuery',false)
-mongoose.connect(url).then(result => {
-    console.log('connected to MongoDB')
-  })
+mongoose.connect(url).then(() => {
+  console.log('connected to MongoDB')
+})
   .catch(error => {
     console.log('error connecting to MongoDB:', error.message)
   })
 
-  function validator (val) {
-    let regex = /\D/g;
-    return val.length>8&&val.match(regex).length<2&&val.indexOf('-')>1&&val.indexOf('-')<4;
-  }
+function validator (val) {
+  let regex = /\D/g
+  return val.length>8&&val.match(regex).length<2&&val.indexOf('-')>1&&val.indexOf('-')<4
+}
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -42,7 +42,7 @@ personSchema.set('toJSON', {
   }
 })
 
-const Person = mongoose.model('Person', personSchema)
+//const Person = mongoose.model('Person', personSchema)
 
 
 
