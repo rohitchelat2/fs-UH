@@ -6,7 +6,6 @@ import contact from './persons'
 import Notification from './Compenents/notification'
 
 const App = () => {
-  
   const [persons, setPersons] = useState([]) 
   const [filterStr, setfilterStr] = useState([]) 
   const [filterPerson, setfilterPerson] = useState([])
@@ -19,12 +18,14 @@ const App = () => {
       })
   }, [])
 
-
+// adding name and updating funvtions together
   const checkName = (newName, newNum) => {
-
     const names= persons.map(person=>person.name)
+    
+    //checking if name exist in the Db already, if them updation called rather than creating new, also checking if its blank
     names.includes(newName)?nameExist (newName, newNum) : newName? addName(newName, newNum) : alert('Name cannot be blank') }
     
+    //function for updating the contact
     const nameExist = (oldName, newNum) => {
     if (window.confirm(`Do you want to update ${oldName} phone number ?`))
         {
@@ -34,15 +35,18 @@ const App = () => {
           const newfilterPersons =  persons.map(person => person.name === updatedContact.name ? updatedContact : person )
           setfilterPerson(newfilterPersons)
           setPersons(newfilterPersons)
-          const message = 
+         // const message = 
           setNotification([`${updatedContact.name}'s phone number udpated`,1])
           setTimeout(() => {setNotification([null,null])}, 5000)
-          setfilterStr(filterStr)})
-
-
+          setfilterStr(filterStr)}).catch(error => {
+            // this is the way to access the error message
+            setNotification([error.response.data.error,0])
+            setTimeout(() => {setNotification([null,null])}, 5000)
+           
+          })
     }}
     
-    
+    //Creating new contact    
     const addName = (newName, newNum) => {
     const nameObject= {name: newName, number: newNum}
     contact.createNew(nameObject).then(newContact =>{
@@ -51,13 +55,16 @@ const App = () => {
     setfilterStr("")
     setNotification([`${newContact.name} added to the contact list`,1])
     setTimeout(() => {setNotification([null,null])}, 5000)
-  
-  
-  })
+  }).catch(error => {
+    // this is the way to access the error message
 
+    setNotification([error.response.data.error,0])
+    setTimeout(() => {setNotification([null,null])}, 5000)
+   
+  })
  }
 
-
+//Function for filtering the list based on text box
  const handleFilter = (event) => {
   const filterStr = event.target.value
   const newfilterPersons = persons.filter(person => person.name.toLowerCase().includes(filterStr.toLowerCase()))
@@ -65,7 +72,7 @@ const App = () => {
   setfilterStr(filterStr)
 }
 
-
+//Function for deleting
  const deleteOne = (event) => {
     const id = event.target.id
     const deleteObject = persons.find(person => person.id === id)
@@ -86,14 +93,12 @@ const App = () => {
       setNotification([`${deleteObject.name} has been already deleted`, 0])
       setTimeout(() => {setNotification([null,null])}, 5000)
       setfilterStr("")
-    })
-    
-  
-  }
-   }
-
+    })}}
 
    
+
+
+
   return (
     
       <div><Notification message={notification[0]} code={notification[1]} />
